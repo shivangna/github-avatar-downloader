@@ -45,7 +45,7 @@ function downloadImageByURL(url, filePath) {
         });
        }
 
-
+//specifies the cb function as part of the loop that runs on JSON results created
 getRepoContributors(repoOwner, repoName, function(err, result) {
   console.log("Errors:", err);
   console.log("Result:", result);
