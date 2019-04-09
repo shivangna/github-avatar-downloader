@@ -1,12 +1,13 @@
 var request = require('request');
-var secrets = require('./secrets.js')
-var fs = require('fs')
+var secrets = require('./secrets.js');
+var fs = require('fs');
 var repoOwner = process.argv[2];
 var repoName = process.argv[3];
 
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
+// if statement accounts for whether two arguments were inputted in terminal
 if (process.argv.length < 4) {
   throw "please provide the repoOwner and the repoName"
 };
@@ -41,6 +42,7 @@ function downloadImageByURL(url, filePath) {
         })
        }
 
+
 getRepoContributors(repoOwner, repoName, function(err, result) {
   console.log("Errors:", err);
   console.log("Result:", result);
@@ -49,7 +51,7 @@ getRepoContributors(repoOwner, repoName, function(err, result) {
     var filePath = "avatars/" + eachObject['login'] + ".jpg"
     downloadImageByURL(url, filePath);
   }
-});
+})
 
 
 
