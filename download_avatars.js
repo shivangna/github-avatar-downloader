@@ -4,7 +4,12 @@ var fs = require('fs')
 var repoOwner = process.argv[2];
 var repoName = process.argv[3];
 
+
 console.log('Welcome to the GitHub Avatar Downloader!');
+
+if (process.argv.length < 4) {
+  throw "please provide the repoOwner and the repoName"
+};
 
 
 function getRepoContributors(repoOwner, repoName, cb) {
