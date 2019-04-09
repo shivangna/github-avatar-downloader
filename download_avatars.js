@@ -9,10 +9,10 @@ console.log('Welcome to the GitHub Avatar Downloader!');
 
 // if statement accounts for whether two arguments were inputted in terminal
 if (process.argv.length < 4) {
-  throw "please provide the repoOwner and the repoName"
-};
+  throw "please provide the repoOwner and the repoName";
+}
 
-
+//
 function getRepoContributors(repoOwner, repoName, cb) {
   var options = {
     url: "https://api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors",
@@ -28,18 +28,19 @@ function getRepoContributors(repoOwner, repoName, cb) {
   });
 }
 
-
+//function that extracts and stores the avatar image based on the avatar url and
+//filePath provided in the callback function loop
 function downloadImageByURL(url, filePath) {
   request.get(url)
          .on('error', function (err) {
-          throw error
+          throw error;
         })
          .pipe(fs.createWriteStream(filePath), function(response) {
           console.log('Downloading image...');
         })
          .on('finish', function(response) {
           console.log('Download Complete.');
-        })
+        });
        }
 
 
@@ -48,12 +49,10 @@ getRepoContributors(repoOwner, repoName, function(err, result) {
   console.log("Result:", result);
   for(var eachObject of result) {
     var url = eachObject['avatar_url'];
-    var filePath = "avatars/" + eachObject['login'] + ".jpg"
+    var filePath = "avatars/" + eachObject['login'] + ".jpg";
     downloadImageByURL(url, filePath);
   }
-})
-
-
+});
 
 
 
